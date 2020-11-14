@@ -16,6 +16,8 @@ app.get('/info', (req, res) => {
         if(!error) {
             console.log(body.current.temperature);
             res.send(JSON.stringify(body));
+        }else{
+            res.send(JSON.stringify({error: 'Could not connect'}));
         }
     });
 });
