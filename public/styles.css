@@ -8,6 +8,30 @@
 
 body {
   background-color: #44dd44;
+  position: relative;
+  padding-top: 4rem;
+  overflow-x: hidden;
+}
+
+body .cp {
+  text-align: center;
+  margin-top: 4rem;
+  margin-bottom: -4rem;
+  font-size: 3rem;
+  font-weight: 700;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: -webkit-gradient(linear, left top, right top, from(#a9c726), to(#0011ff));
+  background-image: linear-gradient(to right, #a9c726, #0011ff);
+  -webkit-transition: 0.5s all;
+  transition: 0.5s all;
+}
+
+body .cp:hover {
+  -webkit-transform: skewX(10deg) skewY(2deg) scale(1.1);
+          transform: skewX(10deg) skewY(2deg) scale(1.1);
+  text-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0, 0.4);
 }
 
 body:after {
@@ -29,7 +53,6 @@ body .myweather {
   background-color: white;
   margin: auto;
   padding: 1rem;
-  margin-top: 4rem;
   border-radius: 2rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -63,7 +86,7 @@ body .myweather img {
 }
 
 body .container {
-  height: 50vh;
+  height: 70vh;
   width: 80vw;
   margin: auto;
   margin-top: 5rem;
@@ -116,6 +139,11 @@ body .container .search input:focus:not(focus-visible) {
   outline: none;
 }
 
+body .container .search .name {
+  color: white;
+  text-align: center;
+}
+
 body .container .search .temperature {
   color: white;
 }
@@ -127,7 +155,7 @@ body .container .search .description {
 body .container .search img {
   background-color: white;
   height: 35%;
-  width: 20%;
+  width: 35%;
   border-radius: 1rem;
 }
 

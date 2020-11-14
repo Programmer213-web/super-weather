@@ -29,8 +29,8 @@ app.get('/coords', (req, res) => {
         if(!error) {
             if(body.features.length > 0) {
                 let latitude = body.features[0].center[1];
-                let longitude = body.features[1].center[0];
-                res.send(JSON.stringify({latitude, longitude}));
+                let longitude = body.features[0].center[0];
+                res.send(JSON.stringify({latitude, longitude, name: body.features[0].place_name}));
             } else{
                 res.send(JSON.stringify({error: 'Could not find any such location'}));
             }

@@ -12,7 +12,6 @@ window.navigator.geolocation.getCurrentPosition( position => {
         url: `/info?lat=${lat}&lon=${lon}`,
         success: function (data) {
             let obj = JSON.parse(data);
-            console.log(obj);
             let locationString = `${obj.location.name}, ${obj.location.region}, ${obj.location.country}`;
             let imgUrl = `${obj.current.weather_icons[0]}`;
             let description = ``;
@@ -46,23 +45,22 @@ $('.find').click(function () {
                     type: 'GET',
                     url: `/info?lat=${obj.latitude}&lon=${obj.longitude}`,
                     success: function (data) {
-                        let obj = JSON.parse(data);
-                        console.log(obj);
-                        $(searchbox + ' .temperature')[0].innerText = obj.current.temperature;
+                        let inobj = JSON.parse(data);
+                        $(searchbox + ' .name')[0].innerText = obj.name;
+                        $(searchbox + ' .temperature')[0].innerText = inobj.current.temperature + ' Degree Celcius';
                         let description = '';
-                        obj.current.weather_descriptions.forEach(function (desc, index) {
-                            description += ' ' + desc;
-                            if(index && index !== object.current.weather_descriptions.length - 1) description += ',';
+                        inobj.current.weather_descriptions.forEach(function (desc, index) {
+                            description += desc;
+                            if(index && index < inobj.current.weather_descriptions.length - 1) description += ', ';
                         });
                         $(searchbox + ' .description')[0].innerText = description;
-                        $(searchbox + ' .display')[0].src = obj.current.weather_icons[0];
+                        $(searchbox + ' .display')[0].src = inobj.current.weather_icons[0];
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         console.log(jqXHR);
                     }
                 })
             }
-            console.log(obj);
         }, 
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(errorThrown);
