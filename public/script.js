@@ -18,8 +18,7 @@ window.navigator.geolocation.getCurrentPosition( position => {
             let description = ``;
             obj.current.weather_descriptions.forEach(function (data, i) {
                 description += data;
-                console.log(i);
-                if(i) description += ', ';
+                if(i && i != data.length - 1) description += ', ';
             });
             $('.description')[0].innerHTML = description;
             $('.display')[0].src = imgUrl;
@@ -30,5 +29,44 @@ window.navigator.geolocation.getCurrentPosition( position => {
             console.log(jqXHR);
         }
     });
+});
+
+$('.find').click(function () {
+    let searchbox = `.search${$(this).attr('tag')}`;
+    let location = $(searchbox + ' input')[0].value;
+    $.ajax({
+        type: 'GET',
+        url: `/coords?address=${location}`,
+        success: function (data) {
+            let obj = JSON.parse(data);
+            if(obj.error){
+                $(searchbox + ' .temperature').innerText = obj.error;
+            } else{
+                $.ajax({
+                    type: 'GET',
+                    url: `/info?lat=${obj.latitude}&lon=${obj.longitude}`,
+                    success: function (data) {
+                        let obj = JSON.parse(data);
+                        console.log(obj);
+                        $(searchbox + ' .temperature')[0].innerText = obj.current.temperature;
+                        let description = '';
+                        obj.current.weather_descriptions.forEach(function (desc, index) {
+                            description += ' ' + desc;
+                            if(index && index !== object.current.weather_descriptions.length - 1) description += ',';
+                        });
+                        $(searchbox + ' .description')[0].innerText = description;
+                        $(searchbox + ' .display')[0].src = obj.current.weather_icons[0];
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log(jqXHR);
+                    }
+                })
+            }
+            console.log(obj);
+        }, 
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(errorThrown);
+        }
+    })
 });
 

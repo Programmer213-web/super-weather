@@ -49,4 +49,78 @@ body {
             width: 40%;
         }
     }
+
+    .container{
+        height: 50vh;
+        width: 80vw;
+        margin: auto;
+        margin-top: 5rem;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        .search{
+            background-color: green;
+            height: 80%;
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background-image: url("https://www.sun-sentinel.com/resizer/mnwBl1ue_cKqNzBJVEB1G6jM6Y4=/1200x0/top/arc-anglerfish-arc2-prod-tronc.s3.amazonaws.com/public/7OG4NT2UJNATJPI4KSCMQQFLC4.JPG");
+            background-size: cover;
+            box-shadow: 0 0.5rem 0.5rem rgba(black, 0.4);
+            border-radius: 1rem;
+
+            input{
+                font-size: 1rem;
+                border-radius: 1rem;
+                padding: 0.2rem;
+                font-weight: 700;
+                padding-right: 0.5rem;
+                padding-left: 0.5rem;
+                text-align: center;
+
+                &:focus:not(focus-visible){
+                    outline: none;
+                }
+            }
+
+            .temperature{
+                color: white;
+            }
+
+            .description{
+                color: white;
+            }
+
+            img{
+                background-color: white;
+                height: 35%;
+                width: 20%;
+                border-radius: 1rem;
+            }
+            
+            button{
+                margin: 1rem;
+                padding: 0.5rem;
+                font-size: 1rem;
+                font-weight: 700;
+                border-radius: 1rem;
+                border: transparent;
+                cursor: pointer;
+                transition: 0.3s all;
+
+                &:focus:not(focus-visible){
+                    outline: none;
+                }
+
+                &:hover{
+                    background-color: black;
+                    color: white;
+                }
+            }
+        }
+    }
 }

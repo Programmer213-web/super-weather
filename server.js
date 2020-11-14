@@ -14,13 +14,31 @@ app.get('/info', (req, res) => {
 
     request({url: newUrl, json: true}, (error, { body }) => {
         if(!error) {
-            console.log(body.current.temperature);
             res.send(JSON.stringify(body));
         }else{
             res.send(JSON.stringify({error: 'Could not connect'}));
         }
     });
 });
+
+app.get('/coords', (req, res) => {
+    console.log(req.query);
+
+    let newUrl = "https://api.mapbox.com/geocoding/v5/mapbox.places/" + encodeURIComponent(req.query.address) + ".json?access_token=pk.eyJ1IjoicHJvLWdyYW1tZXIiLCJhIjoiY2tneHdsMmkzMGdsaDJ6cnNuN3Bud3Z3YyJ9.HC6mzNMztu7uHJa1vk_nbw";
+    request({url: newUrl, json: true}, (error, { body }) => {
+        if(!error) {
+            if(body.features.length > 0) {
+                let latitude = body.features[0].center[1];
+                let longitude = body.features[1].center[0];
+                res.send(JSON.stringify({latitude, longitude}));
+            } else{
+                res.send(JSON.stringify({error: 'Could not find any such location'}));
+            }
+        }else{
+            res.send(JSON.stringify({error: 'Could not connect'}));
+        }
+    })
+})
 
 app.listen(PORT, () => {
     console.log('listening on port ' + PORT);
