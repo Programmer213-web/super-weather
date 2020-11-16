@@ -13,6 +13,15 @@ body {
   overflow-x: hidden;
 }
 
+body .heading {
+  text-align: center;
+  font-size: 4rem;
+  margin-bottom: 4rem;
+  font-weight: 1400;
+  color: white;
+  text-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.4);
+}
+
 body .cp {
   text-align: center;
   margin-top: 4rem;
@@ -24,6 +33,7 @@ body .cp {
   color: transparent;
   background-image: -webkit-gradient(linear, left top, right top, from(#a9c726), to(#0011ff));
   background-image: linear-gradient(to right, #a9c726, #0011ff);
+  text-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0, 0.4);
   -webkit-transition: 0.5s all;
   transition: 0.5s all;
 }
@@ -77,6 +87,11 @@ body .myweather {
 body .myweather h3 {
   font-size: 2rem;
   text-align: center;
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 0.4rem;
+  border-radius: 1rem;
+  -webkit-box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.4);
 }
 
 body .myweather img {
@@ -86,7 +101,7 @@ body .myweather img {
 }
 
 body .container {
-  height: 70vh;
+  height: 100vh;
   width: 80vw;
   margin: auto;
   margin-top: 5rem;
@@ -133,6 +148,19 @@ body .container .search input {
   padding-right: 0.5rem;
   padding-left: 0.5rem;
   text-align: center;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  height: 3rem;
+  -webkit-box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.4);
+}
+
+body .container .search input:focus {
+  background-color: #c1d6ab;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 body .container .search input:focus:not(focus-visible) {
@@ -142,14 +170,38 @@ body .container .search input:focus:not(focus-visible) {
 body .container .search .name {
   color: white;
   text-align: center;
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 0.4rem;
+  border-radius: 1rem;
+  -webkit-box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.4);
 }
 
 body .container .search .temperature {
   color: white;
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 0.4rem;
+  border-radius: 1rem;
+  -webkit-box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.4);
 }
 
 body .container .search .description {
   color: white;
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 0.4rem;
+  border-radius: 1rem;
+  -webkit-box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.4);
+}
+
+body .container .search .rain {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 0.4rem;
+  border-radius: 1rem;
+  -webkit-box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.4);
 }
 
 body .container .search img {
@@ -169,6 +221,8 @@ body .container .search button {
   cursor: pointer;
   -webkit-transition: 0.3s all;
   transition: 0.3s all;
+  -webkit-box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.4);
 }
 
 body .container .search button:focus:not(focus-visible) {
@@ -176,7 +230,35 @@ body .container .search button:focus:not(focus-visible) {
 }
 
 body .container .search button:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
   background-color: black;
   color: white;
+}
+
+body .container .search button:active {
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+  background-color: #313131;
+}
+
+@media screen and (max-width: 940px) {
+  body .container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    height: 170vh;
+    padding: 2rem;
+  }
+  body .container .search {
+    margin-bottom: 2rem;
+    width: 70%;
+  }
+  body .container .search img {
+    width: 50%;
+  }
 }
 /*# sourceMappingURL=styles.css.map */

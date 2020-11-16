@@ -27,7 +27,7 @@ app.get('/coords', (req, res) => {
     let newUrl = "https://api.mapbox.com/geocoding/v5/mapbox.places/" + encodeURIComponent(req.query.address) + ".json?access_token=pk.eyJ1IjoicHJvLWdyYW1tZXIiLCJhIjoiY2tneHdsMmkzMGdsaDJ6cnNuN3Bud3Z3YyJ9.HC6mzNMztu7uHJa1vk_nbw";
     request({url: newUrl, json: true}, (error, { body }) => {
         if(!error) {
-            if(body.features.length > 0) {
+            if(body.features && body.features.length > 0) {
                 let latitude = body.features[0].center[1];
                 let longitude = body.features[0].center[0];
                 res.send(JSON.stringify({latitude, longitude, name: body.features[0].place_name}));

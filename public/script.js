@@ -2,8 +2,6 @@ var lat = undefined;
 var lon = undefined;
 
 window.navigator.geolocation.getCurrentPosition( position => {
-    console.log(position.coords.latitude);
-    console.log(position.coords.longitude);
     lat = position.coords.latitude;
     lon = position.coords.longitude;
 
@@ -33,38 +31,43 @@ window.navigator.geolocation.getCurrentPosition( position => {
 $('.find').click(function () {
     let searchbox = `.search${$(this).attr('tag')}`;
     let location = $(searchbox + ' input')[0].value;
-    $.ajax({
-        type: 'GET',
-        url: `/coords?address=${location}`,
-        success: function (data) {
-            let obj = JSON.parse(data);
-            if(obj.error){
-                $(searchbox + ' .temperature').innerText = obj.error;
-            } else{
-                $.ajax({
-                    type: 'GET',
-                    url: `/info?lat=${obj.latitude}&lon=${obj.longitude}`,
-                    success: function (data) {
-                        let inobj = JSON.parse(data);
-                        $(searchbox + ' .name')[0].innerText = obj.name;
-                        $(searchbox + ' .temperature')[0].innerText = inobj.current.temperature + ' Degree Celcius';
-                        let description = '';
-                        inobj.current.weather_descriptions.forEach(function (desc, index) {
-                            description += desc;
-                            if(index && index < inobj.current.weather_descriptions.length - 1) description += ', ';
-                        });
-                        $(searchbox + ' .description')[0].innerText = description;
-                        $(searchbox + ' .display')[0].src = inobj.current.weather_icons[0];
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        console.log(jqXHR);
-                    }
-                })
+    if(location) {
+        $.ajax({
+            type: 'GET',
+            url: `/coords?address=${location}`,
+            success: function (data) {
+                let obj = JSON.parse(data);
+                if(obj.error){
+                    $(searchbox + ' .temperature')[0].innerText = obj.error;
+                } else{
+                    $.ajax({
+                        type: 'GET',
+                        url: `/info?lat=${obj.latitude}&lon=${obj.longitude}`,
+                        success: function (data) {
+                            let inobj = JSON.parse(data);
+                            $(searchbox + ' .name')[0].innerText = obj.name;    
+                            $(searchbox + ' .temperature')[0].innerText = inobj.current.temperature + ' Degree Celcius';
+                            let description = '';
+                            inobj.current.weather_descriptions.forEach(function (desc, index) {
+                                description += desc;
+                                if(index && index < inobj.current.weather_descriptions.length - 1) description += ', ';
+                            });
+                            $(searchbox + ' .description')[0].innerText = description;
+                            $(searchbox + ' .display')[0].src = inobj.current.weather_icons[0];
+                            $(searchbox + ' .rain')[0].innerText = 'Rain - ' + inobj.current.precip + ' mm';
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            console.log(jqXHR);
+                        }
+                    })
+                }
+            }, 
+            error: function (jqXHR, textStatus, errorThrown) {
+                $(searchbox + ' .temperature')[0].innerText = 'Please Enter a Valid Location Name';
             }
-        }, 
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.log(errorThrown);
-        }
-    })
+        })
+    } else {
+        $(searchbox + ' .temperature')[0].innerText = 'Please Enter a Valid Address';
+    }
 });
 

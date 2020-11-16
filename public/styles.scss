@@ -11,6 +11,15 @@ body {
     padding-top: 4rem;
     overflow-x: hidden;
 
+    .heading{
+        text-align: center;
+        font-size: 4rem;
+        margin-bottom: 4rem;
+        font-weight: 1400;
+        color: white;
+        text-shadow: 0 0.3rem 0.3rem rgba(black, 0.4);
+    }
+
     .cp{
         text-align: center;
         margin-top: 4rem;
@@ -21,6 +30,7 @@ body {
         -webkit-background-clip: text;
         color: transparent;
         background-image: linear-gradient(to right, rgb(169, 199, 38), rgb(0, 17, 255));
+        text-shadow: 0 0.1rem 0.1rem rgba(black, 0.4);
         transition: 0.5s all;
 
         &:hover{
@@ -61,6 +71,10 @@ body {
         h3 {
             font-size: 2rem;
             text-align: center;
+            background-color: rgba(white, 0.4);
+            padding: 0.4rem;
+            border-radius: 1rem;
+            box-shadow: 0 0.3rem 0.3rem rgba(black, 0.4);
         }
 
         img{
@@ -71,7 +85,7 @@ body {
     }
 
     .container{
-        height: 70vh;
+        height: 100vh;
         width: 80vw;
         margin: auto;
         margin-top: 5rem;
@@ -101,6 +115,16 @@ body {
                 padding-right: 0.5rem;
                 padding-left: 0.5rem;
                 text-align: center;
+                transition: all 0.5s;
+                border-top-right-radius: 0;
+                border-top-left-radius: 0;
+                height: 3rem;
+                box-shadow: 0 0.3rem 0.3rem rgba(black, 0.4);
+
+                &:focus{
+                    background-color: rgb(193, 214, 171);
+                    transform: scale(1.1);
+                }
 
                 &:focus:not(focus-visible){
                     outline: none;
@@ -110,14 +134,34 @@ body {
             .name{
                 color: white;
                 text-align: center;
+                background-color: rgba(white, 0.4);
+                padding: 0.4rem;
+                border-radius: 1rem;
+                box-shadow: 0 0.3rem 0.3rem rgba(black, 0.4);
             }
 
             .temperature{
                 color: white;
+                background-color: rgba(white, 0.4);
+                padding: 0.4rem;
+                border-radius: 1rem;
+                box-shadow: 0 0.3rem 0.3rem rgba(black, 0.4);
             }
 
             .description{
                 color: white;
+                background-color: rgba(white, 0.4);
+                padding: 0.4rem;
+                border-radius: 1rem;
+                box-shadow: 0 0.3rem 0.3rem rgba(black, 0.4);
+            }
+
+            .rain{
+                color: white;
+                background-color: rgba(white, 0.4);
+                padding: 0.4rem;
+                border-radius: 1rem;
+                box-shadow: 0 0.3rem 0.3rem rgba(black, 0.4);
             }
 
             img{
@@ -136,14 +180,41 @@ body {
                 border: transparent;
                 cursor: pointer;
                 transition: 0.3s all;
+                box-shadow: 0 0.3rem 0.3rem rgba(black, 0.4);
 
                 &:focus:not(focus-visible){
                     outline: none;
                 }
 
                 &:hover{
+                    transform: scale(1.1);
                     background-color: black;
                     color: white;
+                }
+
+                &:active{
+                    transition: all 0.1s;
+                    transform: scale(1.05);
+                    background-color: rgb(49, 49, 49);
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 940px) {
+    body{
+        .container{
+            flex-direction: column;
+            height: 170vh;
+            padding: 2rem;
+
+            .search{
+                margin-bottom: 2rem;
+                width: 70%;
+
+                img{
+                    width: 50%;
                 }
             }
         }
